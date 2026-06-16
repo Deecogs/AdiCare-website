@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo, type CSSProperties } from "react";
 import { Reveal, Logo, CTAButton } from "./primitives";
 import { DeviceSVG } from "./DeviceSVG";
+import { openLead } from "./lead";
 
 // ----------------------------------------------------------------
 // <AnnouncementBar>
@@ -38,12 +39,15 @@ export const AnnouncementBar = () => (
       New
     </span>
     <span>Adicare Rx-01 hardware now available for pre-order — first 1,000 units</span>
-    <a href="#preorder" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontWeight: 600 }}>
+    <button
+      onClick={() => openLead("preorder")}
+      style={{ display: "inline-flex", alignItems: "center", gap: 4, fontWeight: 600, color: "inherit", cursor: "pointer" }}
+    >
       Reserve yours
       <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden="true">
         <path d="M2 5.5h6m0 0L5.5 3m2.5 2.5L5.5 8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </svg>
-    </a>
+    </button>
   </div>
 );
 
@@ -65,6 +69,7 @@ export const Nav = () => {
     { name: "Adicare EMR", desc: "Modern clinic operating system", href: "#products" },
     { name: "Adicare Scribe", desc: "Voice-to-prescription AI", href: "#features" },
     { name: "Adicare Connect", desc: "ABDM-compliant interoperability", href: "#features" },
+    { name: "Adicare AI", desc: "The clinical AI engine", href: "#ai" },
   ];
 
   return (
@@ -137,14 +142,16 @@ export const Nav = () => {
           </div>
           <a href="#features">Features</a>
           <a href="#demo">Live Demo</a>
-          <a href="#testimonials">Doctors</a>
+          <a href="#doctors">Doctors</a>
           <a href="#blog">Resources</a>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          {/* Sign in — re-enable once accounts / auth exist.
           <a href="#" style={{ fontSize: 14, color: "var(--text-2)", padding: "8px 14px" }}>
             Sign in
           </a>
-          <CTAButton href="#preorder" variant="primary" style={{ padding: "10px 18px", fontSize: 13 }}>
+          */}
+          <CTAButton onClick={() => openLead("demo")} variant="primary" style={{ padding: "10px 18px", fontSize: 13 }}>
             Get a demo
           </CTAButton>
         </div>
@@ -544,7 +551,7 @@ export const Hero = () => {
 
           <Reveal delay={320}>
             <div style={{ display: "flex", gap: 12, marginTop: 32, flexWrap: "wrap" }}>
-              <CTAButton href="#preorder" variant="primary" style={{ padding: "15px 24px", fontSize: 15 }}>
+              <CTAButton onClick={() => openLead("demo")} variant="primary" style={{ padding: "15px 24px", fontSize: 15 }}>
                 Book a demo
               </CTAButton>
               <CTAButton href="#demo" variant="ghost" style={{ padding: "15px 22px", fontSize: 15 }} icon={false}>

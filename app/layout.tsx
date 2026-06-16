@@ -6,6 +6,7 @@ import {
   Caveat,
 } from "next/font/google";
 import "./globals.css";
+import { LeadModal } from "../components/lead";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -147,6 +148,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <LeadModal />
       </body>
     </html>
   );

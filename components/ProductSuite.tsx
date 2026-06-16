@@ -3,6 +3,7 @@
 import React, { useState, useEffect, type ReactNode } from "react";
 import { Reveal, SectionEyebrow, Headline, CTAButton } from "./primitives";
 import { DeviceSVG } from "./DeviceSVG";
+import { openLead } from "./lead";
 
 // ----------------------------------------------------------------
 //  MOCKUP VISUALS
@@ -145,7 +146,11 @@ const ProductCard = ({ tag, title, desc, cta, href, visual, tone }: { tag: strin
     <div className="mono" style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: tone === "primary" ? "var(--accent)" : "var(--dim)", fontWeight: 600, marginBottom: 10 }}>{tag}</div>
     <h3 style={{ fontFamily: "var(--font-display)", fontSize: 26, fontWeight: 600, letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: 10 }}>{title}</h3>
     <p style={{ fontSize: 14, color: "var(--text-2)", lineHeight: 1.55, marginBottom: 18 }}>{desc}</p>
-    <a href={href} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, color: tone === "primary" ? "var(--accent)" : "var(--text)", width: "fit-content" }}>
+    <a
+      href={href}
+      onClick={href === "#preorder" ? (e) => { e.preventDefault(); openLead("preorder"); } : undefined}
+      style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, color: tone === "primary" ? "var(--accent)" : "var(--text)", width: "fit-content" }}
+    >
       {cta}
       <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6h7m0 0L6 3m3 3L6 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none" /></svg>
     </a>
@@ -157,7 +162,7 @@ export const ProductSuite = () => {
     { tag: "ADICARE Rx-01", title: "The smart prescription pad", desc: "Write on real paper. Adicare digitises every stroke to the cloud in under 400ms as a signed, searchable PDF.", cta: "Pre-order ₹39,000", href: "#preorder", visual: <RxDeviceMockup />, tone: "primary" },
     { tag: "ADICARE EMR", title: "The modern clinic OS", desc: "Patient queues, consultations, billing, refills — one tab, infinite shortcuts. Onboard your staff in an afternoon.", cta: "See it in action", href: "#features", visual: <EMRMockup />, tone: "neutral" },
     { tag: "ADICARE SCRIBE", title: "AI voice-to-prescription", desc: "Consult naturally in 12+ Indic languages. Adicare drafts the script, the SOAP note, and the follow-up.", cta: "Try voice demo", href: "#features", visual: <ScribeMockup />, tone: "neutral" },
-    { tag: "ADICARE CONNECT", title: "ABDM + dev platform", desc: "ABHA-verified patients, FHIR-native records, and a REST + GraphQL API for healthtech builders.", cta: "Read the docs", href: "#", visual: <ConnectMockup />, tone: "neutral" },
+    { tag: "ADICARE CONNECT", title: "ABDM + dev platform", desc: "ABHA-verified patients, FHIR-native records, and a REST + GraphQL API for healthtech builders.", cta: "Read the docs", href: "/early-access", visual: <ConnectMockup />, tone: "neutral" },
   ];
 
   return (

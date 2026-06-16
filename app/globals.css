@@ -106,6 +106,12 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 @keyframes scanV { from { transform: translateY(-100%) } to { transform: translateY(100%) } }
 @keyframes spin { to { transform: rotate(360deg) } }
 @keyframes shimmer { from { background-position: 200% 0 } to { background-position: -200% 0 } }
+@keyframes growBar { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+@keyframes fadeSwap { from { opacity: 0; transform: scale(1.012) } to { opacity: 1; transform: scale(1) } }
+@keyframes icSpin { to { transform: rotate(360deg) } }
+@keyframes leadIn { from { opacity: 0; transform: translateY(12px) scale(0.98) } to { opacity: 1; transform: translateY(0) scale(1) } }
+@keyframes aiFloat { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-9px) } }
+@keyframes aiGlow { 0%, 100% { opacity: 0.35; transform: scale(1) } 50% { opacity: 0.6; transform: scale(1.08) } }
 
 /* ---- Responsive layout helpers (inline styles can't hold media queries) ---- */
 @media (max-width: 980px) {
@@ -116,6 +122,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 @media (max-width: 960px) {
   .feat-row { grid-template-columns: 1fr !important; }
   .dark-row { grid-template-columns: 1fr !important; padding: 28px 28px 0 !important; }
+  .showcase-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .showcase-stage { order: -1; }
 }
 @media (max-width: 900px) {
   .nav-menu { display: none !important; }
