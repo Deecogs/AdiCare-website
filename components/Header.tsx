@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo, type CSSProperties } from "react";
+import Image from "next/image";
 import { Reveal, Logo, CTAButton } from "./primitives";
 import { DeviceSVG } from "./DeviceSVG";
 import { openLead } from "./lead";
@@ -90,7 +91,7 @@ export const Nav = () => {
         style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}
       >
         <a href="#" aria-label="Adicare home">
-          <Logo priority size={44} />
+          <Logo priority size={38} />
         </a>
         <div
           className="nav-menu"
@@ -143,7 +144,7 @@ export const Nav = () => {
           <a href="#features">Features</a>
           <a href="#demo">Live Demo</a>
           <a href="#doctors">Doctors</a>
-          <a href="#blog">Resources</a>
+          <a href="/resources">Resources</a>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           {/* Sign in — re-enable once accounts / auth exist.
@@ -287,11 +288,13 @@ const PaperWriting = ({
   lineIdx,
   lineProgress,
   phase,
+  rootStyle,
 }: {
   rxIdx: number;
   lineIdx: number;
   lineProgress: number;
   phase: string;
+  rootStyle?: CSSProperties;
 }) => {
   const rx = HERO_PRESCRIPTIONS[rxIdx];
   const fading = phase === "fading";
@@ -333,6 +336,7 @@ const PaperWriting = ({
         transition: "opacity 0.45s ease",
         display: "flex",
         flexDirection: "column",
+        ...rootStyle,
       }}
     >
       {lines.map((ln, i) => (
@@ -402,6 +406,8 @@ const FloatingChip = ({
 // <Hero>
 // ----------------------------------------------------------------
 export const Hero = () => {
+  // Kept imported for the commented-out original SVG device (easy revert).
+  void DeviceSVG;
   const [rxIdx, setRxIdx] = useState(0);
   const [lineIdx, setLineIdx] = useState(0);
   const [lineProgress, setLineProgress] = useState(0);
@@ -612,6 +618,8 @@ export const Hero = () => {
                 pointerEvents: "none",
               }}
             />
+            {/* ===== ORIGINAL animated SVG device — preserved for easy revert.
+                 To go back: delete the "NEW" block below and uncomment this. =====
             <div
               style={{
                 position: "relative",
@@ -621,6 +629,47 @@ export const Hero = () => {
             >
               <DeviceSVG progress={1} strokesVisible={false} style={{ width: "100%", height: "auto" }} />
               <PaperWriting rxIdx={rxIdx} lineIdx={lineIdx} lineProgress={lineProgress} phase={phase} />
+            </div>
+            ===================================================================== */}
+
+            {/* NEW — real Rx-01 device photo, gently floating, with the live
+                handwritten prescription written onto its paper. */}
+            <div style={{ position: "relative", filter: "drop-shadow(0 34px 60px rgba(15,17,23,0.28))", animation: "aiFloat 6s ease-in-out infinite" }}>
+              <Image
+                src="/device.png"
+                alt="Adicare Rx-01 — the smart prescription pad"
+                width={1280}
+                height={720}
+                priority
+                sizes="(max-width: 980px) 90vw, 560px"
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: 10 }}
+              />
+              {/* prescription paper sitting on the pad (covers the stock sketch).
+                  Tweak left/top/width/height/rotate to fine-tune the fit. */}
+              <div
+                style={{
+                  position: "absolute",
+                  left: "5.6%",
+                  top: "6.8%",
+                  width: "61%",
+                  height: "86%",
+                  transform: "rotate(-1.3deg)",
+                  borderRadius: 4,
+                  background: "linear-gradient(180deg, #ffffff 0%, #fffdf9 100%)",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.12), inset 0 0 50px rgba(0,0,0,0.03)",
+                  overflow: "hidden",
+                }}
+              >
+                <div className="mono" style={{ position: "absolute", left: "9%", top: "5%", fontSize: "clamp(7px, 1vw, 11px)", color: "#9a917f", letterSpacing: "0.12em" }}>ADICARE · Rx</div>
+                <div className="italic" style={{ position: "absolute", left: "9%", top: "10%", fontSize: "clamp(16px, 2.4vw, 30px)", color: "#dfd6c2" }}>℞</div>
+                <PaperWriting
+                  rxIdx={rxIdx}
+                  lineIdx={lineIdx}
+                  lineProgress={lineProgress}
+                  phase={phase}
+                  rootStyle={{ left: "10%", top: "26%", width: "80%", height: "64%" }}
+                />
+              </div>
             </div>
 
             <FloatingChip key={`icr-${chipKey}`} visible={showICR} style={{ top: "12%", left: "-6%" }} eyebrow="ICR · 0.4s" title={currentRx.chips.icr} tone="accent" />

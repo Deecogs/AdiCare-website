@@ -1,5 +1,6 @@
 import { AnnouncementBar, Nav, Hero, TrustBar } from "../components/Header";
 import { ProductSuite, CDSS } from "../components/ProductSuite";
+import { AdicareAI } from "../components/AdicareAI";
 import { ForDoctors } from "../components/ForDoctors";
 import { Features } from "../components/Features";
 import { AIDemo } from "../components/AIDemo";
@@ -32,6 +33,7 @@ export default function Home() {
         {/* <TrustBar />  — re-enable when we have real partner/client logos */}
         <ProductSuite />
         <CDSS />
+        <AdicareAI />
         <ForDoctors />
         <Features />
         <AIDemo />

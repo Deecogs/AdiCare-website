@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, type ReactNode } from "react";
+import Image from "next/image";
 import { Reveal, SectionEyebrow, Headline, CTAButton } from "./primitives";
 import { DeviceSVG } from "./DeviceSVG";
 import { openLead } from "./lead";
@@ -8,14 +9,23 @@ import { openLead } from "./lead";
 // ----------------------------------------------------------------
 //  MOCKUP VISUALS
 // ----------------------------------------------------------------
-const RxDeviceMockup = () => (
-  <div style={{ height: "100%", background: "linear-gradient(135deg, #fff5f3 0%, #ffe9e0 100%)", display: "grid", placeItems: "center", position: "relative", overflow: "hidden" }}>
-    <div style={{ position: "absolute", inset: "-20% -10% 0 -10%", background: "radial-gradient(circle, #ffc2b3 0%, transparent 65%)", opacity: 0.6 }} />
-    <div style={{ width: "76%", position: "relative", transform: "rotate(-3deg)" }}>
-      <DeviceSVG progress={1} />
+const RxDeviceMockup = () => {
+  void DeviceSVG; // still used in the Hero; kept imported for that.
+  return (
+    <div style={{ height: "100%", background: "linear-gradient(135deg, #fff5f3 0%, #ffe9e0 100%)", display: "grid", placeItems: "center", position: "relative", overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: "-20% -10% 0 -10%", background: "radial-gradient(circle, #ffc2b3 0%, transparent 65%)", opacity: 0.6 }} />
+      {/* Real device render — gently floating. (Was the animated DeviceSVG.) */}
+      <Image
+        src="/device-idea.png"
+        alt="Adicare Rx-01 — the smart prescription pad with a handwritten prescription"
+        width={1672}
+        height={941}
+        sizes="(max-width: 768px) 90vw, 460px"
+        style={{ width: "86%", height: "auto", position: "relative", display: "block", animation: "aiFloat 6s ease-in-out infinite" }}
+      />
     </div>
-  </div>
-);
+  );
+};
 
 const EMRMockup = () => {
   const [active, setActive] = useState(1);

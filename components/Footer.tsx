@@ -139,7 +139,7 @@ export const Footer = () => {
         </div>
 
         <div style={{ marginTop: 56, paddingTop: 28, borderTop: "1px solid var(--dark-border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-          <div className="mono" style={{ fontSize: 11, color: "var(--dark-dim)", letterSpacing: "0.08em" }}>© 2026 Adicare Health Pvt Ltd · All rights reserved</div>
+          <div className="mono" style={{ fontSize: 11, color: "var(--dark-dim)", letterSpacing: "0.08em" }}>© 2026 Deecogs Technology Pvt Ltd · All rights reserved</div>
           <div style={{ display: "flex", gap: 14 }}>
             {["Twitter", "LinkedIn", "Instagram", "GitHub"].map((s) => (
               <a

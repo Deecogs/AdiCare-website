@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Reveal, SectionEyebrow, Headline, CTAButton, useCounter } from "./primitives";
+import { ARTICLES } from "./resources";
 
 // ----------------------------------------------------------------
 // <Stats>
@@ -240,11 +241,9 @@ export const Certifications = () => {
 // <Blog>
 // ----------------------------------------------------------------
 export const Blog = () => {
-  const posts = [
-    { tag: "Product", title: "Why we built Adicare on paper, not screens", desc: "The OPD is the last room screens haven't disrupted — for good reason. Here's how we got around it.", time: "6 min read", color: "linear-gradient(135deg, #fff5f3 0%, #ffd9cd 100%)" },
-    { tag: "Research", title: "ICR accuracy on Indian clinical scripts: 99.7%", desc: "Our ICR model was trained on 4M+ anonymised prescriptions across 12 languages. The benchmarks are in.", time: "9 min read", color: "linear-gradient(135deg, #f3f5fd 0%, #d6dcf5 100%)" },
-    { tag: "Field notes", title: "30 days at Apollo Bengaluru with Adicare Rx-01", desc: "How a single endocrinology clinic onboarded the hardware, the software, and 2,400 patients in one month.", time: "12 min read", color: "linear-gradient(135deg, #f0f9f4 0%, #c8eada 100%)" },
-  ];
+  // Pulled from the shared resources data so cards and the /resources pages
+  // never drift apart. Show the first three as a homepage teaser.
+  const posts = ARTICLES.slice(0, 3);
   return (
     <section id="blog" style={{ paddingTop: "var(--section-y)", paddingBottom: "var(--section-y)", background: "var(--bg)" }}>
       <div className="container">
@@ -261,15 +260,15 @@ export const Blog = () => {
             </Reveal>
           </div>
           <Reveal delay={120}>
-            <CTAButton href="#" variant="ghost">All resources</CTAButton>
+            <CTAButton href="/resources" variant="ghost">All resources</CTAButton>
           </Reveal>
         </div>
 
         <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
           {posts.map((p, i) => (
-            <Reveal key={p.title} delay={i * 80}>
+            <Reveal key={p.slug} delay={i * 80}>
               <a
-                href="#"
+                href={`/resources/${p.slug}`}
                 style={{ display: "block", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", overflow: "hidden", transition: "all 0.3s" }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-3px)";
