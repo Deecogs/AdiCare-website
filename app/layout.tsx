@@ -125,7 +125,7 @@ const jsonLd = {
       description: DESCRIPTION,
       offers: {
         "@type": "Offer",
-        price: "39000",
+        price: "1999",
         priceCurrency: "INR",
         description: "Adicare Rx-01 smart prescription pad — pre-order",
       },

@@ -65,12 +65,14 @@ export const Nav = () => {
     return () => window.removeEventListener("scroll", f);
   }, []);
 
+  // Absolute "/#..." anchors so the same Nav works on sub-pages
+  // (e.g. /resources) and still scrolls correctly on the homepage.
   const productsMenu = [
-    { name: "Adicare Rx-01", desc: "The smart prescription pad", href: "#device" },
-    { name: "Adicare EMR", desc: "Modern clinic operating system", href: "#products" },
-    { name: "Adicare Scribe", desc: "Voice-to-prescription AI", href: "#features" },
-    { name: "Adicare Connect", desc: "ABDM-compliant interoperability", href: "#features" },
-    { name: "Adicare AI", desc: "The clinical AI engine", href: "#ai" },
+    { name: "Adicare Rx-01", desc: "The smart prescription pad", href: "/#device" },
+    { name: "Adicare EMR", desc: "Modern clinic operating system", href: "/#products" },
+    { name: "Adicare Scribe", desc: "Voice-to-prescription AI", href: "/#features" },
+    { name: "Adicare Connect", desc: "ABDM interoperability — coming soon", href: "/#products" },
+    { name: "Adicare AI", desc: "The clinical AI engine", href: "/#ai" },
   ];
 
   return (
@@ -90,7 +92,7 @@ export const Nav = () => {
         className="container"
         style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}
       >
-        <a href="#" aria-label="Adicare home">
+        <a href="/" aria-label="Adicare home">
           <Logo priority size={38} />
         </a>
         <div
@@ -141,9 +143,9 @@ export const Nav = () => {
               </div>
             )}
           </div>
-          <a href="#features">Features</a>
-          <a href="#demo">Live Demo</a>
-          <a href="#doctors">Doctors</a>
+          <a href="/#features">Features</a>
+          <a href="/#demo">Live Demo</a>
+          <a href="/#doctors">Doctors</a>
           <a href="/resources">Resources</a>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>

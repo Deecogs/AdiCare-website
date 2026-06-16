@@ -112,6 +112,8 @@ const ScribeMockup = () => (
 
 const ConnectMockup = () => (
   <div style={{ height: "100%", background: "linear-gradient(135deg, #eef6fb 0%, #e0eef6 100%)", padding: 22, display: "flex", flexDirection: "column", gap: 12, position: "relative" }}>
+    {/* This is a concept preview — ABDM/FHIR are on the roadmap, not live yet. */}
+    <span style={{ position: "absolute", top: 12, right: 12, fontSize: 9, padding: "3px 8px", background: "rgba(16,21,34,0.85)", color: "#e2e8f0", borderRadius: 99, fontFamily: "var(--font-mono)", letterSpacing: "0.08em" }}>PLANNED</span>
     <div className="mono" style={{ fontSize: 9, color: "var(--dim)", letterSpacing: "0.12em", textTransform: "uppercase" }}>POST /v1/abdm/link</div>
     <div style={{ background: "#101522", borderRadius: 10, padding: "12px 14px", flex: 1, fontFamily: "var(--font-mono)", fontSize: 11, color: "#cbd5e1", lineHeight: 1.6, overflow: "hidden" }}>
       <div><span style={{ color: "#94a3b8" }}>{"{"}</span></div>
@@ -169,10 +171,10 @@ const ProductCard = ({ tag, title, desc, cta, href, visual, tone }: { tag: strin
 
 export const ProductSuite = () => {
   const products = [
-    { tag: "ADICARE Rx-01", title: "The smart prescription pad", desc: "Write on real paper. Adicare digitises every stroke to the cloud in under 400ms as a signed, searchable PDF.", cta: "Pre-order ₹39,000", href: "#preorder", visual: <RxDeviceMockup />, tone: "primary" },
+    { tag: "ADICARE Rx-01", title: "The smart prescription pad", desc: "Write on real paper. Adicare digitises every stroke to the cloud in under 400ms as a signed, searchable PDF.", cta: "Pre-order ₹1,999", href: "#preorder", visual: <RxDeviceMockup />, tone: "primary" },
     { tag: "ADICARE EMR", title: "The modern clinic OS", desc: "Patient queues, consultations, billing, refills — one tab, infinite shortcuts. Onboard your staff in an afternoon.", cta: "See it in action", href: "#features", visual: <EMRMockup />, tone: "neutral" },
     { tag: "ADICARE SCRIBE", title: "AI voice-to-prescription", desc: "Consult naturally in 12+ Indic languages. Adicare drafts the script, the SOAP note, and the follow-up.", cta: "Try voice demo", href: "#features", visual: <ScribeMockup />, tone: "neutral" },
-    { tag: "ADICARE CONNECT", title: "ABDM + dev platform", desc: "ABHA-verified patients, FHIR-native records, and a REST + GraphQL API for healthtech builders.", cta: "Read the docs", href: "/early-access", visual: <ConnectMockup />, tone: "neutral" },
+    { tag: "ADICARE CONNECT", title: "ABDM + dev platform", desc: "On our roadmap: ABDM interoperability and a developer API for healthtech builders. Get early access as we roll it out.", cta: "Get early access", href: "/early-access", visual: <ConnectMockup />, tone: "neutral" },
   ];
 
   return (

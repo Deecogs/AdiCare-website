@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Logo } from "../../../components/primitives";
 import { LeadCTA } from "../../../components/lead";
+import { Nav } from "../../../components/Header";
 import { Footer } from "../../../components/Footer";
 import { ArticleBody } from "../../../components/ArticleBody";
 import { ARTICLES, getArticle } from "../../../components/resources";
@@ -60,16 +60,7 @@ export default async function ArticlePage({
     <main style={{ minHeight: "100vh", background: "var(--bg)", position: "relative", overflow: "hidden" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* top bar */}
-      <div
-        className="container"
-        style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}
-      >
-        <Link href="/" aria-label="Adicare home">
-          <Logo size={40} priority />
-        </Link>
-        <LeadCTA type="demo" variant="ghost">Get a demo</LeadCTA>
-      </div>
+      <Nav />
 
       {/* gradient header */}
       <header style={{ background: article.color, borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
