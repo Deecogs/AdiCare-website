@@ -128,12 +128,20 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 @media (max-width: 900px) {
   .nav-menu { display: none !important; }
 }
+/* Patient-app (DHR) section: keep the two-phone column from overflowing its
+   grid track on mid-size screens (grid columns won't shrink below content
+   unless we allow minWidth:0). */
+.integ-grid > * { min-width: 0; }
+.dhr-phones { flex-wrap: wrap; }
+
 @media (max-width: 880px) {
   .product-grid { grid-template-columns: 1fr !important; }
   .demo-grid { grid-template-columns: 1fr !important; }
   .testimonial-card { grid-template-columns: 1fr !important; padding: 28px !important; gap: 24px !important; }
   .integ-grid { grid-template-columns: 1fr !important; }
   .blog-grid { grid-template-columns: 1fr !important; }
+  /* When stacked, give the phones a touch more room and center them. */
+  .dhr-phone { width: clamp(150px, 38vw, 220px) !important; }
 }
 @media (max-width: 760px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 32px !important; }

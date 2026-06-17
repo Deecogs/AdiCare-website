@@ -26,16 +26,21 @@ const Phone = ({
   style?: React.CSSProperties;
 }) => (
   <div
+    className="dhr-phone"
     style={{
       borderRadius: 28,
       overflow: "hidden",
       border: "6px solid var(--text)",
       background: "var(--text)",
       boxShadow: "0 30px 70px rgba(15,17,23,0.22)",
+      // Fluid: scales down on narrow columns instead of overflowing/clipping.
+      width: "clamp(150px, 40%, 240px)",
+      flex: "0 1 auto",
+      minWidth: 0,
       ...style,
     }}
   >
-    <Image src={src} alt={alt} width={w} height={h} sizes="240px" style={{ width: 240, height: "auto", display: "block" }} />
+    <Image src={src} alt={alt} width={w} height={h} sizes="(max-width: 880px) 40vw, 240px" style={{ width: "100%", height: "auto", display: "block" }} />
   </div>
 );
 
@@ -85,7 +90,7 @@ export const PatientApp = () => (
           </div>
 
           {/* Phones */}
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-end", gap: 18 }}>
+          <div className="dhr-phones" style={{ display: "flex", justifyContent: "center", alignItems: "flex-end", gap: 18, minWidth: 0 }}>
             <Phone src="/images/patient-app/home.png" alt="Adicare DHR — family health records" w={393} h={852} style={{ transform: "translateY(16px)" }} />
             <Phone src="/images/patient-app/records.png" alt="Adicare DHR — patient records" w={375} h={812} />
           </div>
